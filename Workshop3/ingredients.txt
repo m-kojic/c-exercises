@@ -1,5 +1,4 @@
 hamster 5
 caffeine 3
 corruption 2
-
 abomination = hamster + caffeine

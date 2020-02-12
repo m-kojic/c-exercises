@@ -6,18 +6,40 @@
 #include <string>
 using namespace std;
 
+unsigned int totalRecipes = 0;
+unsigned int totalIngredients = 0;
+unsigned int totalItems = 0;
+
+string* recipes = new string[totalRecipes];
+string* ingredients = new string[totalIngredients];
+
 void processInput(string input) {
 	if (input == "items") {
 		cout << "Print items!" << endl;
 	}
 	else if (input == "recipes") {
-		cout << "Print recipes!" << endl;
+		cout << endl << "RECIPES" << endl;
+		cout << "****************" << endl;
+		for (int i = 0; i < totalRecipes; i++)
+		{
+			cout << recipes[i] << endl;
+		}
+		cout << "****************" << endl;
+	}
+	else if (input == "ingredients") {
+		cout << endl << "INGREDIENTS" << endl;
+		cout << "****************" << endl;
+		for (int i = 0; i < totalIngredients; i++)
+		{
+			cout << ingredients[i] << endl;
+		}
+		cout << "****************" << endl;
 	}
 	else if (input == "quit") {
 		exit(1);
 	}
 	else {
-		cout << "Invalid input. Please use \"items\", \"recipes\", \"{itemname}\" or \"quit\"" << endl;
+		cout << "Invalid input. Please use \"items\", \"recipes\", \"ingredients\", \"{itemname}\" or \"quit\"" << endl;
 	}
 }
 
@@ -30,20 +52,47 @@ void mainLoop() {
 	}
 }
 
-void readFromFile(ifstream &inputFile) {
-	while (!inputFile.eof())
+void countIngredientsAndRecipes(ifstream& inputFile) {
+	string line;
+	while (getline(inputFile, line))
 	{
-		string current;
-		inputFile >> current;
-		cout << current << endl;
+		if (line.find("=") != std::string::npos) {
+			totalRecipes++;
+		}
+		else {
+			totalIngredients++;
+		}
 	}
-	inputFile.close();
+	cout << "totalRecipes: " << totalRecipes << endl;
+	cout << "totalIngredients: " << totalIngredients << endl;
+}
+
+void populateIngredientsAndRecipes(ifstream& inputFile) {
+	recipes = new string[totalRecipes];
+	ingredients = new string[totalIngredients];
+
+	string line;
+	unsigned int currentRecipes = 0;
+	unsigned int currentIngredients = 0;
+
+	while (getline(inputFile, line))
+	{
+		if (line.find("=") != string::npos) {
+			recipes[currentRecipes] = line;
+			currentRecipes++;
+		}
+		else {
+			ingredients[currentIngredients] = line;
+			currentIngredients++;
+		}
+	}
+
 	mainLoop();
 }
 
 int main()
 {
-    ifstream inputFile;
+	ifstream inputFile;
 	string fileName = "";
 	cout << "EXERCISE 1" << endl;
 	cout << "================" << endl;
@@ -55,7 +104,11 @@ int main()
 		inputFile.open(fileName);
 		if (inputFile.is_open())
 		{
-			readFromFile(inputFile);
+			countIngredientsAndRecipes(inputFile);
+			inputFile.clear();
+			inputFile.seekg(0, ios::beg);
+			populateIngredientsAndRecipes(inputFile);
+			inputFile.close();
 		}
 		else {
 			cout << "Unable to open file" << endl;
