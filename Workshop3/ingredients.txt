@@ -7,3 +7,4 @@ fireflyPowder 1
 abomination = hamster + caffeine
 antidote = mushroom + fireflyPowder
 potion = water + corruption
+potion = water + mushroom
