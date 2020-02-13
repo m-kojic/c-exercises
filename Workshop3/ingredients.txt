@@ -1,4 +1,9 @@
 hamster 5
 caffeine 3
 corruption 2
+mushroom 5
+water 4
+fireflyPowder 1
 abomination = hamster + caffeine
+antidote = mushroom + fireflyPowder
+potion = water + corruption

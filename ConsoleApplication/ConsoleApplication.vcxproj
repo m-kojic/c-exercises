@@ -155,6 +155,7 @@
     <ClCompile Include="Recursion.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Streams.cpp" />
+    <ClCompile Include="Structs.cpp" />
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

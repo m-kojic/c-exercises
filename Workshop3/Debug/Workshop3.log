@@ -1,4 +1,0 @@
-﻿  Workshop3.cpp
-D:\Projects\Experiments\C++\ConsoleApp\ConsoleApplication\Workshop3\Workshop3.cpp(23,21): warning C4018: '<': signed/unsigned mismatch
-D:\Projects\Experiments\C++\ConsoleApp\ConsoleApplication\Workshop3\Workshop3.cpp(32,21): warning C4018: '<': signed/unsigned mismatch
-  Workshop3.vcxproj -> D:\Projects\Experiments\C++\ConsoleApp\ConsoleApplication\Debug\Workshop3.exe
