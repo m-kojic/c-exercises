@@ -56,6 +56,8 @@ void makeItem(string name, Recipe* recipe) {
 		recipe->ingredients[0]->amount -= 1;
 		recipe->ingredients[1]->amount -= 1;
 		cout << "Item \"" << name << "\" created!" << endl;
+		Item* item = getItem(name);
+		item->amount += 1;
 	}
 	else {
 		cout << "No enough ingredients to make this item!" << endl;
@@ -67,10 +69,11 @@ void checkForMultipleRecipes(Item* item) {
 		cout << "What recipe do you want to create?" << endl;
 		for (int i = 0; i < item->totalRecipes; i++)
 		{
-			cout << "Option " << i << ": " << item->recipes[i].name << " = "
+			cout << "\tOption " << i << ": " << item->recipes[i].name << " = "
 				<< item->recipes[i].ingredients[0]->name << " + " << item->recipes[i].ingredients[1]->name << endl;
 		}
 
+		cout << "Enter option: " << endl;
 		int option;
 		cin >> option;
 		if (option < item->totalRecipes) {
