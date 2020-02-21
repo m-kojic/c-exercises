@@ -58,19 +58,12 @@ DListNode* initialise(unsigned int k) {
     return f;
 }
 
-DListNode* initialiseInOrder(unsigned int k) {
-    DListNode *n = nullptr;
-    for (unsigned int i = k; i>0; i--) {
-        n = insertAfter(i, n);
-    }
-    
-    return n;
-}
-
 DListNode* flip(unsigned int k, DListNode *n) {
     if(n == nullptr) {
         return n;
     }
+    //This is important to detect if the node is the first in the list
+    //if n->previous points to anything that's not null means there is an element in the front
     if(n->previous != nullptr) {
         std::cout << "Node is not the first in the list!" << std::endl;
         return n;
